@@ -1,0 +1,70 @@
+[
+  {
+    "vector_name": "degree_field_match",
+    "vector_description": "How well the candidate’s degree field matches the required field for the role."
+  },
+  {
+    "vector_name": "degree_level",
+    "vector_description": "The level of education attained by the candidate (e.g., Bachelor’s, Master’s, PhD)."
+  },
+  {
+    "vector_name": "degree_specialization_match",
+    "vector_description": "How closely the candidate’s degree specialization aligns with the job requirements."
+  },
+  {
+    "vector_name": "academic_performance",
+    "vector_description": "Quality of academic performance, including grades, CGPA, ranking, and honors."
+  },
+  {
+    "vector_name": "education_instutute",
+    "vector_description": "Relevance or prestige of the educational institution attended by the candidate."
+  },
+  {
+    "vector_name": "relevant_skills",
+    "vector_description": "Presence of job-relevant technical or functional skills in the candidate’s profile."
+  },
+  {
+    "vector_name": "proficiency_level",
+    "vector_description": "The depth or mastery level of each relevant skill the candidate possesses."
+  },
+  {
+    "vector_name": "years_of_use_for_skill",
+    "vector_description": "Number of years the candidate has applied or used a skill in real projects or roles."
+  },
+  {
+    "vector_name": "relevant_certifications",
+    "vector_description": "Presence of certifications relevant to the job or skill set required."
+  },
+  {
+    "vector_name": "certification_authority",
+    "vector_description": "Credibility and recognition of the organization issuing the certification."
+  },
+  {
+    "vector_name": "recency",
+    "vector_description": "How recently the candidate has worked with required skills, tools, or domains."
+  },
+  {
+    "vector_name": "domain_match_job_titles",
+    "vector_description": "How closely the candidate’s previous job titles and domains align with the role."
+  },
+  {
+    "vector_name": "tenure_duration",
+    "vector_description": "Length of time the candidate has spent in relevant roles or industries."
+  },
+  {
+    "vector_name": "business_impact_on_team",
+    "vector_description": "Extent of measurable or demonstrated business impact delivered in past roles."
+  },
+  {
+    "vector_name": "project_complexity",
+    "vector_description": "The complexity and scale of projects the candidate has handled."
+  },
+  {
+    "vector_name": "seniority",
+    "vector_description": "Level of responsibility or leadership the candidate has reached in past roles."
+  },
+  {
+    "vector_name": "tenure_stability",
+    "vector_description": "Consistency and stability of the candidate’s employment history (e.g., frequent moves vs. long stays)."
+  }
+]

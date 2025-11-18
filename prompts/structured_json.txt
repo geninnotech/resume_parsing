@@ -1,0 +1,101 @@
+##resume ocr text
+```
+<##resume_ocr##>
+```
+
+
+##resume structured json
+```
+<##structured_json##>
+```
+
+You are given two inputs:
+1) RESUME OCR TEXT (may be any resume format, order, or style)
+2) A STRICT "resume structured json" SCHEMA (the exact shape you must fill)
+
+# YOUR JOB
+• Populate the provided schema EXACTLY AS-IS:
+  - NO extra keys
+  - NO missing keys
+  - NO renaming keys
+  - Keep the key order as given (if the caller’s checker is strict).
+• **Use EVERY fragment from the OCR text. DO NOT drop any content.**
+• If some OCR content cannot be cleanly mapped to any field, put it into the NEAREST appropriate `miscellaneous` array at that level (e.g., inside an experience item, then its `miscellaneous`; inside education, then its `miscellaneous`; etc.). 
+• If the schema does not define a `miscellaneous` at that level, bubble up to the nearest ancestor that DOES have `miscellaneous`. If none exists at any ancestor, append the fragment verbatim to the closest free-text field (e.g., `description` or `summary`) rather than dropping it.
+• give special attention to numbers and gibberish text, as it could be URLs, and it is important to get it right, in order to link to work. absolutely, do not make any mistakes in such cases.
+• give attention to indentations, bullet points, subpoints and column structures, so there might be structured information scattered in the resume, which might be lost, if you ignore them.
+
+
+# OUTPUT FORMAT (MANDATORY)
+• All resume data should be contained in <json>...</json> tags. This is because only the data contained in the json tags of the resume data will be used downstream. if anything is left out, it will affect the quality of the downstream tasks. so you shold include everything in the resume data in the json tag.
+• Indentation MUST be 2 spaces.
+• Include ALL top-level keys from the given schema, even if empty arrays/objects.
+• Use valid JSON types only (strings, numbers, arrays, objects, booleans, null).
+
+# STRICT DATE RULES (APPLY GLOBALLY)
+• “Present/Current/Till date/Ongoing” → set:
+  - end_date.month = ""
+  - end_date.year  = "Present"
+  (NEVER put “Present” in month.)
+• If only a YEAR is given: month="", year="YYYY".
+• Convert month names/abbreviations to numbers as strings:
+  Jan=1, Feb=2, Mar=3, Apr=4, May=5, Jun=6, Jul=7, Aug=8, Sep=9, Oct=10, Nov=11, Dec=12.
+• Handle common variants: “Sept”→9, “Mar’21”→ month="3", year="2021".
+• If the month is ambiguous or missing, leave month="".
+
+# CURRENCY & NUMBER NORMALIZATION
+• If a numeric salary/compensation appears WITHOUT a currency, assume INR (ISO 4217 code).
+• Always use ISO 4217 codes for currency (e.g., INR, USD, EUR).
+• Normalize single-value magnitudes:
+  - 150k → 150000
+  - 1.2M / 1.2m → 1200000
+  - 7 Lakh / 7L → 700000
+  - 1 Crore / 1 Cr → 10000000
+• If a RANGE (e.g., 8–10 LPA) or unclear figure appears, you can use upto variable to denote the highest range. eg. compensation would be 8 and compensation_upto would be 10.
+• If NO numeric salary appears, set compensation fields to null and compensation_currency to "" unless schema specifies a default.
+
+# PHONES, LINKS, ADDRESSES
+• Phone: capture EXACTLY as printed (country codes, spaces, dashes). If extension appears (“ext 234”, “x234”), set "ext":"234"; else "ext":"".
+• Normalize obfuscated emails if unambiguous (e.g., “name [at] domain [dot] com” → “name@domain.com”); if ambiguous, keep raw text in `miscellaneous`.
+• Addresses: fill fields you can (city/region/country); leave unknown subfields "" (or defaults per schema). If only a city/country is given, set those and leave the rest blank.
+
+# CATEGORICAL FIELDS (STRICT, NO HALLUCINATIONS)
+• Use ONLY the allowed values described in the schema comments (e.g., employment_type: full-time, part-time, flexible, null).
+• Infer categories ONLY when clearly implied (e.g., “Full-time” on the role → employment_type="full-time"). If uncertain, use null and store the original hint in `miscellaneous`.
+• Language proficiency MUST use the allowed labels (Native, fluent, intermediate, basic). If not stated, leave null (do not guess numbers).
+• Site/shift/relocation/remote preferences: set only if clearly indicated; otherwise leave null/empty and place hints in `miscellaneous`.
+
+# MAPPING GUIDELINES (TO CAPTURE EVERYTHING)
+• Name: Fill `full`. Split into `first`/`last` only if obvious. Do NOT invent middle/prefix/suffix.
+• Headline/Summary: If the resume has a title/objective/profile summary, map to `headline` and/or `summary`. If both exist in schema, keep headline short and summary descriptive.
+• Experience:
+  - Responsibilities vs Achievements: put measurable wins (growth %, awards, “first to…”) under achievements; ongoing duties under responsibilities.
+  - Named brands/clients/platforms/tournaments/hashtags should go to `clients_mentioned` or relevant arrays. Leftovers to `experience[i].miscellaneous`.
+  - Team size: If stated (“led a team of 4”), set team_size=4 (as number).
+  - Unknown employment_type → null (store raw hints in `miscellaneous`).
+• Education: Map degree/field/institution/location/dates; unknowns as "" or null per type. Extra details (clubs, fests) usually belong in `volunteering` or education `miscellaneous`.
+• Certifications/Licenses: Create entries even if dates/IDs/URLs are missing; leave missing fields empty ("") or null per type.
+• Skills: 
+  - Tools/tech → `skills.tools` or `skills.technical`.
+  - Soft skills (communication, leadership) → `skills.soft`.
+  - Domains (e.g., “Sports Marketing”, “FinTech”) → `skills.domains`.
+  - Methods (Agile, SEO, SEM, A/B Testing) → `skills.methodologies`.
+  - If uncertain where to place a skill, use `skills.miscellaneous`.
+• Projects/Publications/Patents/Awards/Volunteering/Languages/References:
+  - If present in OCR, populate those arrays with partial data rather than dropping items; unknown fields remain "" or null.
+  - Club/committee/extracurricular → typically `volunteering` (one or more entries). Include bullet details in that entry’s `miscellaneous` if fields don’t exist.
+
+# DUPLICATION & RESIDUAL TEXT
+• Do NOT drop duplicates if they appear in OCR; include them in the closest correct place. If exact duplicates bloat a field, keep at least one and record the duplicate fact in `miscellaneous`.
+• Incomplete/dangling OCR fragments: keep verbatim in the nearest `miscellaneous` as a `"raw"` string.
+
+# VALIDATION BEFORE RETURNING
+1) All schema keys exist and structure is intact (no extra/renamed keys).
+2) Dates observe the rules (e.g., “Present” only in end_date.year).
+3) Currency codes are ISO 4217; numbers normalized.
+4) No invented facts; only safe inferences for allowed categories.
+5) EVERY leftover OCR fragment appears in some field or `miscellaneous`.
+6) Output is ONLY the JSON within <json>...</json>, indented with 2 spaces.
+7) Try to fit everything in the ocr text in the output json, if anything does not make sense at least put it in respective `miscellaneous` section. But always try to include every text.
+
+You will respond ONLY with the completed JSON inside <json>...</json>, following ALL rules above.

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ title or "LLM Resume POC" }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-100 min-h-screen">
+    <nav class="bg-white shadow mb-6">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="{{ url_for('index') }}" class="font-semibold text-xl text-slate-800">
+          new_hr · Resume POC
+        </a>
+        <div class="space-x-4 text-sm">
+          <a href="{{ url_for('upload') }}" class="text-slate-700 hover:text-blue-600">Upload</a>
+          <a href="{{ url_for('candidates') }}" class="text-slate-700 hover:text-blue-600">Candidates</a>
+          <a href="{{ url_for('query') }}" class="text-slate-700 hover:text-blue-600">Query</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 pb-12">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="space-y-2 mb-4">
+            {% for category, message in messages %}
+              <div class="px-4 py-2 rounded text-sm
+                          {% if category == 'success' %}bg-emerald-100 text-emerald-800
+                          {% elif category == 'error' %}bg-red-100 text-red-800
+                          {% else %}bg-slate-100 text-slate-800{% endif %}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

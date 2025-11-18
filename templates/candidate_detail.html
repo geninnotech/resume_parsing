@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white rounded-xl shadow p-4">
+  <div class="flex items-center justify-between mb-3">
+    <div>
+      <h1 class="text-xl font-semibold">{{ candidate.name }}</h1>
+      <p class="text-xs text-slate-500">ID: {{ candidate.id }}</p>
+    </div>
+    <a href="{{ url_for('files', subpath=pdf_rel_path) }}"
+       class="text-xs text-blue-600 hover:underline">
+      Download PDF
+    </a>
+  </div>
+
+  <div class="border-b mb-3 flex space-x-4 text-sm">
+    <button type="button" class="py-2 border-b-2 border-blue-600 text-blue-600"
+            onclick="setTab('pdf')">PDF</button>
+    <button type="button" class="py-2 border-b-2 border-transparent hover:border-slate-300"
+            onclick="setTab('markdown')">Markdown OCR</button>
+    <button type="button" class="py-2 border-b-2 border-transparent hover:border-slate-300"
+            onclick="setTab('json')">Structured JSON</button>
+  </div>
+
+  <div id="tab-pdf" class="tab-panel">
+    <p class="text-sm text-slate-600 mb-2">
+      Your browser may allow inline viewing; otherwise use the download link above.
+    </p>
+    <iframe src="{{ url_for('files', subpath=pdf_rel_path) }}"
+            class="w-full h-[600px] border rounded"></iframe>
+  </div>
+
+  <div id="tab-markdown" class="tab-panel hidden">
+    <pre class="text-xs whitespace-pre-wrap bg-slate-50 border rounded p-3 overflow-x-auto">{{ markdown_text }}</pre>
+  </div>
+
+  <div id="tab-json" class="tab-panel hidden">
+    <pre class="text-xs whitespace-pre-wrap bg-slate-50 border rounded p-3 overflow-x-auto">{{ json_text }}</pre>
+  </div>
+</div>
+
+<script>
+  function setTab(which) {
+    const panels = ["pdf", "markdown", "json"];
+    panels.forEach(id => {
+      const el = document.getElementById("tab-" + id);
+      if (!el) return;
+      if (id === which) {
+        el.classList.remove("hidden");
+      } else {
+        el.classList.add("hidden");
+      }
+    });
+  }
+</script>
+{% endblock %}

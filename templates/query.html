@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid gap-4 md:grid-cols-3">
+  <div class="md:col-span-2 bg-white rounded-xl shadow p-4">
+    <h1 class="text-xl font-semibold mb-3">Search / user query</h1>
+    <form method="post" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">
+          Query
+        </label>
+        <textarea name="user_query" rows="4"
+          class="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="e.g., Strong Kafka + Go backend engineer with fintech experience"></textarea>
+      </div>
+      <div class="flex items-center space-x-2">
+        <label class="text-sm text-slate-700">Top K</label>
+        <input type="number" name="top_k" min="1" max="20" value="5"
+               class="w-20 border rounded px-2 py-1 text-sm" />
+      </div>
+      <button type="submit"
+              class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold
+                     bg-blue-600 text-white hover:bg-blue-700">
+        Run query
+      </button>
+    </form>
+
+    {% if answer_html %}
+      <div class="mt-6 border-t pt-4">
+        <h2 class="text-lg font-semibold mb-2">LLM answer</h2>
+        <div class="prose max-w-none text-sm" style="word-break: break-word;">
+          {{ answer_html|safe }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <h2 class="text-sm font-semibold mb-2">Job description (context)</h2>
+    <p class="text-xs text-slate-700 whitespace-pre-line mb-4">
+      {{ job.description[:2000] }}{% if job.description|length > 2000 %}…{% endif %}
+    </p>
+
+    {% if ranked %}
+      <h2 class="text-sm font-semibold mb-2">Ranked candidates</h2>
+      <ul class="space-y-1 text-xs">
+        {% for c in ranked[:10] %}
+          <li>
+            <span class="font-mono text-slate-500">#{{ loop.index }} · {{ c.query_score }}</span>
+            &mdash;
+            <a href="{{ url_for('candidate_detail', candidate_id=c.id) }}"
+               class="text-blue-600 hover:underline">
+              {{ c.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if weights %}
+      <h2 class="text-sm font-semibold mt-4 mb-1">Vector weights</h2>
+      <div class="max-h-64 overflow-y-auto border rounded p-2 text-[11px] font-mono bg-slate-50">
+        {% for name, w in weights.items()|sort(attribute='0') %}
+          <div><span class="text-slate-700">{{ name }}</span>: <span class="text-slate-900">{{ w }}</span></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

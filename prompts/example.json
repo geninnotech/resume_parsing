@@ -1,0 +1,560 @@
+{
+  "candidate": {
+    "name": {
+      "full": "Rahul Kumar Singh",
+      "first": "Rahul",
+      "middle": "Kumar",
+      "last": "Singh",
+      "prefix": "",
+      "suffix": "",
+      "preferred": "Rahul",
+      "sensitive": {
+        "date_of_birth": {
+          "day": "14",
+          "month": "8",
+          "year": "1993"
+        },
+        "gender": "male",
+        "marital_status": "single",
+        "full_home_address_text": [
+          {
+            "raw": "A-204, Green Heights Apartment, HSR Layout, Bengaluru, Karnataka 560102, India",
+            "street": "A-204, Green Heights Apartment, HSR Layout",
+            "state": "Karnataka",
+            "city": "Bengaluru",
+            "pin_code": 560102,
+            "country": "India",
+            "current_residence": true
+          },
+          {
+            "raw": "Village- Rajpur, Post- Deoria, District- Ballia, Uttar Pradesh 277001, India",
+            "street": "Village- Rajpur, Post- Deoria",
+            "state": "Uttar Pradesh",
+            "city": "Ballia",
+            "pin_code": 277001,
+            "country": "India",
+            "current_residence": false
+          }
+        ]
+      }
+    },
+    "contact": {
+      "emails": [
+        {
+          "value": "[rahul.singh@example.com](mailto:rahul.singh@example.com)",
+          "type": "personal"
+        },
+        {
+          "value": "[rahul.singh@workmail.in](mailto:rahul.singh@workmail.in)",
+          "type": "work"
+        }
+      ],
+      "phones": [
+        {
+          "value": "+91 98765 43210",
+          "type": "mobile",
+          "ext": ""
+        },
+        {
+          "value": "+91 80 4000 1234",
+          "type": "office",
+          "ext": "204"
+        }
+      ],
+      "address": {
+        "raw": "A-204, Green Heights Apartment, HSR Layout, Bengaluru, Karnataka 560102, India",
+        "street": "A-204, Green Heights Apartment, HSR Layout",
+        "unit": "",
+        "city": "Bengaluru",
+        "region": "Karnataka",
+        "postal_code": "560102",
+        "country": "India",
+        "current_residence": true
+      },
+      "online": [
+        {
+          "type": "LinkedIn",
+          "url": "[https://www.linkedin.com/in/rahulkumarsingh](https://www.linkedin.com/in/rahulkumarsingh)"
+        },
+        {
+          "type": "GitHub",
+          "url": "[https://github.com/rahulks](https://github.com/rahulks)"
+        },
+        {
+          "type": "Portfolio",
+          "url": "[https://rahulks.dev](https://rahulks.dev)"
+        }
+      ]
+    },
+    "headline": "Senior Software Engineer \u2014 Backend & Distributed Systems",
+    "summary": "Backend engineer with 7+ years of experience building high-scale APIs, event-driven systems, and data pipelines in fintech and e-commerce.",
+    "logistics": {
+      "relocation_text": "Open to relocate within India (Bengaluru, Pune, Hyderabad).",
+      "only_remote": false,
+      "only_onsite": false,
+      "travel_availability_text": "Available for domestic travel up to 25% of time.",
+      "notice_period_days": 30
+    },
+    "extras": {
+      "interests": [
+        "Long-distance running",
+        "Cricket analytics",
+        "Open-source contributions"
+      ],
+      "pronouns": "he/him"
+    }
+  },
+  "job_expectations": {
+    "desired_roles": [
+      "Senior Backend Engineer",
+      "Platform Engineer",
+      "Distributed Systems Engineer"
+    ],
+    "desired_locations": [
+      "Bengaluru",
+      "Hyderabad",
+      "Pune",
+      "Remote (India)"
+    ],
+    "salary": {
+      "compensation_expectation": 3000000,
+      "compensation_upto": null,
+      "compensation_currency": "INR"
+    },
+    "site_preference": "hybrid",
+    "employment_type": "full_time",
+    "work_time_preference": "morning_shift",
+    "work_flexibility": true
+  },
+  "experience": [
+    {
+      "company": "RupeeFlow Fintech Pvt. Ltd.",
+      "role_title": "Senior Software Engineer",
+      "location": "Bengaluru, Karnataka, India",
+      "start_date": {
+        "month": "5",
+        "year": "2022"
+      },
+      "end_date": {
+        "month": "",
+        "year": "Present"
+      },
+      "current_role_description": "Owning event-driven microservices for payments clearing, settlement, and reconciliation at 10k TPS peak.",
+      "employment_type": "full-time",
+      "responsibilities": [
+        "Designed and implemented idempotent payment orchestration using Kafka and Saga pattern",
+        "Reduced settlement latency by 35% via batching and async compaction",
+        "Owned PCI-DSS compliant tokenization service and key rotation workflows",
+        "Mentored 4 engineers; introduced incident review templates and SLOs"
+      ],
+      "achievements": [
+        "Cut chargeback processing time from 2 days to 6 hours",
+        "Achieved 99.95% monthly availability across payment APIs"
+      ],
+      "technologies": [
+        "Java",
+        "Spring Boot",
+        "Kafka",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Kubernetes",
+        "AWS"
+      ],
+      "team_size": 12,
+      "clients_mentioned": [
+        "BharatPay Online",
+        "ShopKart India"
+      ],
+      "salary": {
+        "compensation": 2800000,
+        "compensation_upto": null,
+        "compensation_currency": "INR"
+      }
+    },
+    {
+      "company": "KartStreet Commerce",
+      "role_title": "Software Engineer",
+      "location": "Pune, Maharashtra, India",
+      "start_date": {
+        "month": "7",
+        "year": "2019"
+      },
+      "end_date": {
+        "month": "4",
+        "year": "2022"
+      },
+      "current_role_description": "",
+      "employment_type": "full-time",
+      "responsibilities": [
+        "Built product catalog search APIs with pagination and filtering",
+        "Implemented Redis-based distributed locks to prevent overselling",
+        "Introduced grey releases and canary deployments for risk mitigation"
+      ],
+      "achievements": [
+        "Improved search response p95 from 420ms to 170ms",
+        "Reduced inventory sync errors by 60%"
+      ],
+      "technologies": [
+        "Go",
+        "gRPC",
+        "MySQL",
+        "Elasticsearch",
+        "Redis",
+        "Docker",
+        "GitLab CI"
+      ],
+      "team_size": 9,
+      "clients_mentioned": [],
+      "salary": {
+        "compensation": 1400000,
+        "compensation_upto": null,
+        "compensation_currency": "INR"
+      }
+    },
+    {
+      "company": "TechNest Solutions",
+      "role_title": "Junior Software Engineer",
+      "location": "Hyderabad, Telangana, India",
+      "start_date": {
+        "month": "6",
+        "year": "2017"
+      },
+      "end_date": {
+        "month": "6",
+        "year": "2019"
+      },
+      "current_role_description": "",
+      "employment_type": "full-time",
+      "responsibilities": [
+        "Developed internal tools for log aggregation and alerting",
+        "Wrote REST services and integrated third-party payment gateways"
+      ],
+      "achievements": [
+        "Automated on-call runbooks leading to 20% faster MTTR"
+      ],
+      "technologies": [
+        "Python",
+        "Flask",
+        "MongoDB",
+        "RabbitMQ",
+        "Grafana",
+        "Prometheus"
+      ],
+      "team_size": 6,
+      "clients_mentioned": [],
+      "salary": {
+        "compensation": 600000,
+        "compensation_upto": null,
+        "compensation_currency": "INR"
+      }
+    }
+  ],
+  "education": [
+    {
+      "institution": "National Institute of Technology Patna",
+      "degree": "B.Tech",
+      "field": "Computer Science and Engineering",
+      "location": "Patna, Bihar, India",
+      "start_date": {
+        "month": "7",
+        "year": "2013"
+      },
+      "end_date": {
+        "month": "5",
+        "year": "2017"
+      },
+      "gpa": 8.2,
+      "honors": [
+        "Department Merit Scholarship (2016)"
+      ],
+      "courses": [
+        "Distributed Systems",
+        "Data Structures & Algorithms",
+        "Database Management Systems",
+        "Operating Systems"
+      ],
+      "thesis_title": "Scalable Event Processing with Stream Partitioning",
+      "advisor": "Dr. Ananya Sen",
+      "description": "Capstone focused on benchmarking partition strategies for throughput vs. latency trade-offs."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect \u2013 Associate",
+      "issuer": "Amazon Web Services",
+      "credential_id": "ABC1234XYZ",
+      "issue_date": {
+        "month": "9",
+        "year": "2021"
+      },
+      "expires_date": {
+        "month": "9",
+        "year": "2024"
+      },
+      "description": "Validated skills in designing scalable, resilient architectures on AWS.",
+      "url": "[https://aws.amazon.com/certification/](https://aws.amazon.com/certification/)"
+    },
+    {
+      "name": "CKA: Certified Kubernetes Administrator",
+      "issuer": "The Linux Foundation",
+      "credential_id": "LF-CKA-567890",
+      "issue_date": {
+        "month": "3",
+        "year": "2023"
+      },
+      "expires_date": {
+        "month": "3",
+        "year": "2026"
+      },
+      "description": "Administer Kubernetes clusters, networking, storage, and troubleshooting.",
+      "url": "[https://training.linuxfoundation.org/certification/](https://training.linuxfoundation.org/certification/)"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Driving License",
+      "jurisdiction": "Karnataka, India",
+      "class": "LMV",
+      "issue_date": {
+        "month": "2",
+        "year": "2018"
+      },
+      "expires_date": {
+        "month": "2",
+        "year": "2038"
+      },
+      "description": "Light Motor Vehicle",
+      "id_text": "KA-01-2020-XXXXX",
+      "url": ""
+    }
+  ],
+  "skills": {
+    "technical": [
+      {
+        "name": "Java",
+        "version": "17",
+        "proficiency": 8
+      },
+      {
+        "name": "Spring Boot",
+        "version": "3.x",
+        "proficiency": 8
+      },
+      {
+        "name": "Kafka",
+        "version": "3.x",
+        "proficiency": 8
+      },
+      {
+        "name": "Go",
+        "version": "1.20",
+        "proficiency": 7
+      },
+      {
+        "name": "PostgreSQL",
+        "version": "14",
+        "proficiency": 7
+      },
+      {
+        "name": "Redis",
+        "version": "6",
+        "proficiency": 7
+      },
+      {
+        "name": "Docker",
+        "version": "",
+        "proficiency": 7
+      },
+      {
+        "name": "Kubernetes",
+        "version": "1.27",
+        "proficiency": 7
+      },
+      {
+        "name": "AWS",
+        "version": "",
+        "proficiency": 6
+      },
+      {
+        "name": "Elasticsearch",
+        "version": "8",
+        "proficiency": 6
+      }
+    ],
+    "soft": [
+      "Stakeholder communication",
+      "Mentoring",
+      "Ownership",
+      "Incident management"
+    ],
+    "methodologies": [
+      "Microservices",
+      "Event-driven architecture",
+      "CQRS",
+      "TDD",
+      "CI/CD"
+    ],
+    "tools": [
+      "GitLab CI",
+      "Terraform",
+      "Grafana",
+      "Prometheus",
+      "Jira"
+    ],
+    "domains": [
+      "Fintech Payments",
+      "E-commerce",
+      "Fraud Detection"
+    ]
+  },
+  "projects": [
+    {
+      "name": "Real-time Reconciliation Engine",
+      "description": "Built a near-real-time reconciliation engine ingesting payment events and bank statements for same-day settlement.",
+      "role": "Lead Developer",
+      "start_date": {
+        "month": "10",
+        "year": "2022"
+      },
+      "end_date": {
+        "month": "6",
+        "year": "2023"
+      },
+      "tech": [
+        "Java",
+        "Kafka Streams",
+        "PostgreSQL",
+        "Debezium",
+        "Docker"
+      ],
+      "links": [
+        "[https://rahulks.dev/projects/recon-engine](https://rahulks.dev/projects/recon-engine)"
+      ]
+    },
+    {
+      "name": "Inventory Consistency Service",
+      "description": "Service to ensure eventual consistency across regional warehouses using outbox pattern and retries.",
+      "role": "Developer",
+      "start_date": {
+        "month": "1",
+        "year": "2021"
+      },
+      "end_date": {
+        "month": "10",
+        "year": "2021"
+      },
+      "tech": [
+        "Go",
+        "MySQL",
+        "Redis",
+        "gRPC"
+      ],
+      "links": []
+    }
+  ],
+  "publications": [
+    {
+      "type": "Conference",
+      "title": "Throughput vs. Exactly-Once: Practical Trade-offs in Payment Systems",
+      "venue": "SCALE India 2024",
+      "date": {
+        "month": "2",
+        "year": "2024"
+      },
+      "doi": "",
+      "url": "[https://scaleindia.dev/2024/papers/rahul](https://scaleindia.dev/2024/papers/rahul)",
+      "authors": [
+        "Rahul Kumar Singh",
+        "Priya Menon"
+      ],
+      "candidate_author_label": "author"
+    }
+  ],
+  "patents": [
+    {
+      "title": "Method for Idempotent Payment Orchestration in Distributed Systems",
+      "number": "IN2024XXXXXX",
+      "jurisdiction": "India",
+      "status": "Filed",
+      "filing_date": {
+        "month": "7",
+        "year": "2024"
+      },
+      "grant_date": {
+        "month": "",
+        "year": ""
+      },
+      "url": "",
+      "inventors": [
+        "Rahul Kumar Singh",
+        "Sandeep R"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "name": "Spot Award \u2014 Reliability Champion",
+      "issuer": "RupeeFlow Fintech Pvt. Ltd.",
+      "date": {
+        "month": "12",
+        "year": "2023"
+      },
+      "description": "Recognized for reducing incident frequency and improving observability."
+    }
+  ],
+  "volunteering": [
+    {
+      "organization": "Teach for India (Local Chapter)",
+      "role": "Volunteer Mentor",
+      "description": "Mentored high-school students on basic programming and career guidance.",
+      "start_date": {
+        "month": "8",
+        "year": "2020"
+      },
+      "end_date": {
+        "month": "12",
+        "year": "2020"
+      },
+      "impact": "Guided 20+ students to complete introductory projects in Python.",
+      "causes": [
+        "Education",
+        "Youth"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "name": "Hindi",
+      "proficiency": "Native"
+    },
+    {
+      "name": "English",
+      "proficiency": "fluent"
+    },
+    {
+      "name": "Kannada",
+      "proficiency": "basic"
+    }
+  ],
+  "references": {
+    "entries": [
+      {
+        "name": "Priya Menon",
+        "title": "Engineering Manager",
+        "company": "RupeeFlow Fintech Pvt. Ltd.",
+        "relationship": "Manager",
+        "email": "[priya.menon@rupeeflow.com](mailto:priya.menon@rupeeflow.com)",
+        "phone": "+91 80 4000 4321"
+      },
+      {
+        "name": "Arun Verma",
+        "title": "Principal Engineer",
+        "company": "KartStreet Commerce",
+        "relationship": "Mentor",
+        "email": "[arun.verma@kartstreet.com](mailto:arun.verma@kartstreet.com)",
+        "phone": "+91 98111 22334"
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+You are an expert hiring intelligence system for ANY job family (tech and non-tech: trades, field ops, healthcare, education, retail, hospitality, logistics, sanitation, public sector, etc.). Given a job description (JD), generate a set of NEW, LEAF-LEVEL assessment vectors that are:
+  1) SPECIFIC to the JD (no generic vectors; defaults already cover general items),
+  2) measurable from resume text only,
+  3) NOT duplicates of the provided default vectors or of each other, and
+  4) leaf-only: if you generate children, DO NOT include the parent.
+
+# Inputs
+<JOB_DESCRIPTION>
+<##job_description##>
+</JOB_DESCRIPTION>
+
+<DEFAULT_VECTORS_JSON>
+<##default_vectors##>
+</DEFAULT_VECTORS_JSON>
+
+# Purpose
+Create JD-tied, leaf-level vectors that capture resume-visible signals (titles, employers, dates, bullets, skills, tools, equipment, versions/models, licenses, certifications, links/portfolios, locations, clearances, methodologies, procedures, industries, achievements, metrics, workloads, environments). Output only leaves to avoid double counting. These vectors will later be weighted and multiplied with candidate scores.
+
+# Universality (important)
+- The JD can be about ANY job (e.g., garbage collector, forklift operator, nurse, teacher, chef, retail supervisor, warehouse associate, field service tech, security guard, etc.), not just IT. Adapt vectors to the JD’s domain and avoid IT bias.
+- Custom vectors MUST reflect nuanced, JD-specific aspects and common HR queries beyond generic signals (which are covered by the default vectors).
+
+# Coverage expectations (be thorough; explode categories into leaf vectors)
+Prefer leaves like "rear_loader_truck_operation" over a parent like "waste_collection_equipment".
+Consider BOTH technical and non-technical domains. Decompose where meaningful:
+- Tools/Equipment & versions/models: machinery (e.g., balers, compactors), vehicle classes, RF scanners, POS systems, EMR/EHR, dishwashers/ovens, cleaning machines, PPE types; also languages/frameworks/runtimes where relevant. Include model/version alignment and professional-use depth.
+- Licenses/Certifications/Clearances: CDL classes & endorsements (air brakes, hazmat), OSHA 10/30, ServSafe, CPR/BLS/ACLS, state teaching credentials, security clearances, union cards, trade licenses (ensure resume visibility).
+- Procedures/Standards/Compliance: HIPAA, PCI, HACCP, food safety logs, sanitation SOPs, medication administration protocols, IEP handling, chain-of-custody, loss prevention, hazmat handling, safety audits, accessibility (WCAG), GMP, ISO standards.
+- Work Environment & Constraints: outdoor/field work, extreme temps, cold chain, sterile environments, confined spaces, night shifts, weekends/holidays, on-call/rotations, standing/walking/lifting requirements (only if explicitly stated on resume).
+- Scale/Workload Bands: route stops/day, parcels/hour, picks/hour, tables/shift, beds/shift, students/class, customers/hour, lines/day, p95 wait times, uptime/reliability, inventory counts; define bands and map resume phrases to them.
+- Customer/Community Interaction: patient-facing, parent-facing, public-facing roles, complaint resolution, cash handling/reconciliation, tip pool management, guest recovery, bilingual service (only if resume states).
+- Logistics/Route/Territory: territory size, multi-stop routing, last-mile tools, GPS/telematics systems, route optimization software.
+- Documentation/Records: EMR charting, sanitation logs, maintenance logs, IEP documentation, incident reports, inspection checklists (and ADRs/RFCs/runbooks if relevant to the JD).
+- Collaboration/Hierarchy: cross-functional partners (e.g., nursing/patient techs/physicians; kitchen expo/servers; warehouse leads; city supervisors), stakeholder seniority, vendor coordination, union/collective bargaining context when visible.
+- Outcomes: quantified impact on waste diversion, table turn time, shrink reduction, pick accuracy, readmission reduction, OTIF, defect rates, safety incidents, fuel savings, route time.
+
+# Hard constraints
+- Leaf-only rule: If a category can be decomposed, output only its sub-vectors (leaves). Do NOT include the category parent when children exist.
+- Resume-only evidence: Use what resumes typically show. No external inference/interviews. If evidence is absent, it’s simply not scored (handled later).
+- Distinctness & independence: Vectors must be pairwise distinct in scope and evidence. If two often trigger together, split by tighter criteria (e.g., model/version, context, scale) or treat them as separate non-overlapping leaves.
+- Fairness/safety: Exclude protected-class signals or proxies. Avoid graduation year except within general "recency" (already a default). Score location/shift/clearance/work auth ONLY if the resume states it explicitly.
+- Non-duplication: Do not recreate any default vector or a near-duplicate (semantic overlap). Custom vectors should target nuanced, JD-specific aspects the defaults don’t cover.
+
+# Vector count & selection (STRICT)
+- Produce **at least 5** and **no more than 40** vectors (inclusive). **Do not exceed 40** under any circumstance.
+- It is **not required** to hit 40; return only as many high-signal, non-overlapping leaves as are justified by the JD (10–15 is common).
+- If your candidate list exceeds 40, **rank and prune** using this order:
+  1) JD-criticality (must-have > strong-plus > nice-to-have),
+  2) Resume measurability (clear evidence patterns),
+  3) Predictive specificity (tight alignment to exact tools/equipment/protocols/scale),
+  4) Redundancy reduction (drop near-duplicates; keep the most specific leaf),
+  5) Coverage breadth across distinct JD themes.
+- If you generate fewer than 5, expand coverage until you reach 5 without adding generic or duplicate items.
+- **Do not pad** the list to reach 40.
+
+# Naming
+- Use concise, machine-friendly snake_case leaf names (e.g., "cdl_class_b_air_brakes_current", "rear_loader_truck_operation").
+
+# Output format (JSON only)
+- Return ONLY a valid JSON array.
+- Each element MUST be an object with exactly two keys:
+  - "vector_name": string (snake_case, leaf-only)
+  - "vector_description": string (1–2 sentences describing what the vector measures relative to the JD and why it matters)
+- No markdown, no comments, no trailing commas, no additional fields.
+
+# Example shape (illustrative only; do not include this example in your output):
+[
+  {"vector_name": "rear_loader_truck_operation", "vector_description": "Evidence in the resume of operating rear-loader garbage trucks as required by the JD, including route work and safety procedures."},
+  {"vector_name": "cdl_b_with_air_brakes_endorsement_visible", "vector_description": "Resume shows an active CDL Class B with air brakes endorsement matching JD licensing needs."}
+]
+
+# Deliverables
+- Output ONLY the JSON array of leaf vectors with "vector_name" and "vector_description". No headers or extra text.

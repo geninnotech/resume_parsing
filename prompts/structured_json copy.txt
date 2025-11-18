@@ -1,0 +1,88 @@
+##resume ocr text
+```
+<##resume_ocr##>
+```
+
+
+##resume structured json
+```
+<##structured_json##>
+```
+
+you are given a `resume ocr text` along with a `resume structured json` your task is to fit the structured json with the available ocr text. 
+
+## ABSOLUTE RULES — FOLLOW EXACTLY
+
+
+1. **DO NOT LEAVE OUT ANYTHING**
+    * If you did not find any field to put the text on the ocr text field, you should put that information under the `miscellaneous` key at the respective field in the structured json.
+    * If you still did not found anything to put into in the structured json you should put that in the root key of miscellaneous section of the structured json.
+
+2. **ADHERE 100% TO THE PROVIDED JSON STRUCTURE AND KEYS. DO NOT INVENT NEW KEYS.**
+
+    * Use the **exact** keys and nesting shown in the schema below.
+    * Preserve key spellings **including existing typos** (e.g., `employement_type`, `desciption`).
+    * Do **not** remove any keys. Populate all keys with a value (possibly empty) as per the rules below.
+
+3. **DATE HANDLING — “Present / Current / Till date”**
+
+    * For **any** date range (experience, education, volunteering, certifications, licenses, publications, patents, awards) that indicates “Present/Current/Till date/ongoing”, set:
+
+    * `end_date.month` = `""` (empty string)
+    * `end_date.year`  = `"Present"`
+    * **Never** put “Present” in the `month` field. It **must** go in the `year` field.
+    * If only a year is given, set `month` to `""` and `year` to that year as a string (e.g., `"2021"`).
+    * Record months in numbers only if any other format is provided (e.g., `"Jun"`, `"June"` `"Jan"`, `"January"`). then convert them to respective numbers. So `"Aug"` or `"August"` becomes `8`.
+
+## EMPTY VALUES (NO GUESSING)
+
+* **Strings**: use `""` (empty string) when the value is missing or not explicitly stated.
+* **Arrays**: use `[]` when there are no entries.
+* **Numbers (int/float)**: use `null` if not explicitly provided as a single, unambiguous numeric value.
+* **Booleans**: use `null` if not explicitly stated as true/false. Do **not** assume defaults.
+
+> Examples:
+>
+> * If a phone has no extension, `"ext": ""`.
+> * If a skill proficiency isn’t given as a clear 0–10 number, set `"proficiency": null`.
+> * If salary/compensation is not a single clear value (e.g., a range like “₹12–15LPA”), set the numeric field to `null`.
+> * If “type” (e.g., phone/email type) is not stated, set it to `""`.
+
+## NORMALIZATION RULES 
+
+* **Currency** : if any salary or compensation expectation is mentioned or current salary is mentioned, and if any currency type is not specified, then assume the currency to be INR. if if the currency type is specifically mentioned then you should use that currency type and do not convert the values.
+
+* **Currency type** : always mention the currency type in `ISO 4217 standard currency codes` format, such as USD, INR.
+
+* **Numbers with K/M**: If a **single** compensation/salary figure appears as “150k” or “1.2M”, convert to integer if unambiguous:
+
+  * `k` = ×1000; `m`/`M` = ×1000000; strip currency symbols and commas.
+  * `Lakh` or `L` means Lakh that is 100000.
+  * If the value is a **range** or unclear, set to `null`.
+* **Phone numbers**: capture exactly as printed (including country codes, spaces, dashes); if extension is shown (e.g., “ext 234”, “x234”), put the numeric part in `"ext"`; otherwise `"ext": ""`.
+* **Links**: output exactly as shown; if a profile label/type is not stated, use `"type": ""`.
+
+## CONTENT RULES (NO SUMMARIES, NO REWRITES)
+
+* **Use the resume’s exact wording** for all text fields. Do **not** paraphrase, summarize, or correct spelling/grammar.
+* **Lists**: each bullet/line becomes a separate string entry (e.g., `responsibilities`, `achievements`, `courses`, `honors`).
+* **Technologies/skills**: only include items **explicitly** mentioned. Do not add synonyms or related tools.
+* **Categorical fields** (e.g., `site_preference`, `employement_type`, `work_time_preference`, `languages[].proficiency`, `experience[].employment_type`):
+
+  * Use the exact allowed values shown in the schema comments.
+  * you can infere these values, to best of your knowledge, you can give benefit of doubt only in this case.
+  * But, you should not make up the field. you can **only** infer the values based on the real values given.
+  * eg. if language proficiency is given in the resume as intermediate, you can infer that the proficiency for that Categorical value should be 5 out of 10. But if no proficiency value is given in the resume, then you should just give the null which is the default value. 
+
+## MULTIPLE ENTRIES & ORDER
+
+* Keep the **original order** of items as they appear on the resume for experiences, education, projects, publications, etc.
+* If multiple roles exist at the same company, create separate entries in `experience`.
+* For `current_role_description`, fill only for a role that is clearly ongoing (“Present/Current/Till date”); otherwise `""`.
+
+
+## very important note
+1. always only return the json object within <json></json> tag
+2. do not write anything else than the json object
+3. do not leave anything out from the resume text, if you cannot fit that it in any keys, you should absolutely put it in the miscellaneous key.
+4. there are two types of miscellaneous options available. one at the sub key level. for example under experience section there is also a key for miscellaneous. and the second is miscellaneous at the root key. you should favor sub key miscellaneous than the root key. you should only use the root level miscellaneous when you absolutely cannot put the information into the sub key miscellaneous. but while decidinging this do not left out any information.

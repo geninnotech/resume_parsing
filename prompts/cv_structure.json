@@ -1,0 +1,275 @@
+{
+  "candidate": (dict) {
+    "name": (dict) {
+      "full": (string),
+      "first": (string),
+      "middle": (string),
+      "last": (string),
+      "prefix": (string),
+      "suffix": (string),
+      "preferred": (string),
+      "sensitive": (dict) {
+        "date_of_birth": (dict) {
+            "day": (string),
+            "month": (string),
+            "year": (string)
+          },
+        "gender": (string) (categorical : male, female, transgender, other, prefer_not_to_say, null) (default : null),
+        "marital_status": (string) (categorical : single, married, divorced, widowed, null) (default : null),
+        "full_home_address_text": (list) [{
+          "raw": (string),
+          "street": (string),
+          "state": (string),
+          "city": (string),
+          "pin_code": (int),
+          "country": (string),
+          "current_residence": (boolean) (default : null)
+        }]
+        }
+    },
+    "contact": (dict) {
+      "emails": (array[dict]) [
+        { "value": (string), "type": (string) }
+      ],
+      "phones": (array[dict]) [
+        { "value": (string), "type": (string), "ext": (string) }
+      ],
+      "address": (dict) {
+        "raw": (string),
+        "street": (string),
+        "unit": (string),
+        "city": (string),
+        "region": (string),
+        "postal_code": (string),
+        "country": (string),
+        "current_residence": (boolean) (default : true)
+      },
+      "online": (array[dict]) [
+        { "type": (string), "url": (string) }
+      ]
+    },
+    "headline": (string),
+    "summary": (string),
+    "logistics": (dict) {
+      "relocation_text": (string),
+      "only_remote": (boolean),
+      "only_onsite": (boolean),
+      "travel_availability_text": (string),
+      "notice_period_days": (int),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    },
+    "extras": (dict) {
+      "interests": (array[string]),
+      "pronouns": (string)
+    },
+    "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+  },
+  "job_expectations": (dict) {
+    "desired_roles": (array[string]),
+    "desired_locations": (array[string]),
+    "salary":{
+              "compensation_expectation": (int),
+              "compensation_upto": (int) (default null, use only if a range is mentioned)
+              "compensation_currency": (string) (example, USD, INR)
+              },
+
+    "site_preference": (string) (categorical : onsite, hybrid, remote, null) (default : null),
+    "employment_type": (string) (categorical : full_time, part_time, flexible, , null) (default : null),
+    "work_time_preference": (string) (categorical : morning_shift, night_shift, null) (default : null),
+    "work_flexibility": (boolean),
+    "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+  },
+    
+  
+  "experience": (array[dict]) [
+    {
+      "company": (string),
+      "role_title": (string),
+      "location": (string),
+      "start_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "end_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "current_role_description": (string),
+      "employment_type": (string) (categorical : full-time, part-time, flexible, null) (default : null),
+      "responsibilities": (array[string]),
+      "achievements": (array[string]),
+      "technologies": (array[string]),
+      "team_size": (int),
+      "clients_mentioned": (array[string]),
+      "salary":{
+                "compensation": (int),
+                "compensation_upto": (int) (default null, use only if a range is mentioned)
+                "compensation_currency": (string) (example, USD, INR)
+                },
+    "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "education": (array[dict]) [
+    {
+      "institution": (string),
+      "degree": (string),
+      "field": (string),
+      "location": (string),
+      "start_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "end_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "gpa": (float),
+      "honors": (array[string]),
+      "courses": (array[string]),
+      "thesis_title": (string),
+      "advisor": (string),
+      "description": (string),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "certifications": (array[dict]) [
+    {
+      "name": (string),
+      "issuer": (string),
+      "credential_id": (string),
+      "issue_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "expires_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "description": (string),
+      "url": (string),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "licenses": (array[dict]) [
+    {
+      "name": (string),
+      "jurisdiction": (string),
+      "class": (string),
+      "issue_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "expires_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "description": (string),
+      "id_text": (string),
+      "url": (string),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "skills": (dict) {
+    "technical": (array[dict]) [
+      { "name": (string), "version": (string), "proficiency": (int) (categorical : 0 to 10, null) (default : null),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []}
+    ],
+    "soft": (array[dict]) {
+      { "name": (string), "proficiency": (int) (categorical : 0 to 10, null) (default : null),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []}
+    },
+    "methodologies": (array[string]),
+    "tools": (array[string]),
+    "domains": (array[string]),
+    "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+  },
+  "projects": (array[dict]) [
+    {
+      "name": (string),
+      "description": (string),
+      "role": (string),
+      "start_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "end_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "tech": (array[string]),
+      "links": (array[string]),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "publications": (array[dict]) [
+    {
+      "type": (string),
+      "title": (string),
+      "venue": (string),
+      "date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "doi": (string),
+      "url": (string),
+      "authors": (array[string]),
+      "candidate_author_label": (string) (categorical : author, co-author, editor, acknowledged, null) (default : null),,
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "patents": (array[dict]) [
+    {
+      "title": (string),
+      "number": (string),
+      "jurisdiction": (string),
+      "status": (string),
+      "filing_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "grant_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "url": (string),
+      "inventors": (array[string]),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "awards": (array[dict]) [
+    { "name": (string), 
+      "issuer": (string), 
+      "date": (dict) {
+        "month": (string),
+        "year": (string)
+      }, 
+      "description": (string) ,
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+  ],
+  "volunteering": (array[dict]) [
+    { "organization": (string), "role": (string), 
+      "description": (string) 
+      "start_date": (dict) {
+        "month": (string),
+        "year": (string)
+      },
+      "end_date": (dict) {
+        "month": (string),
+        "year": (string)
+      }, 
+      "impact": (string), 
+      "causes": (array[string]),
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+    }
+  ],
+  "languages": (array[dict]) [
+    { "name": (string), "proficiency": (text) (categorical : Native, fluent, intermediate, basic, null) (default : null), }
+  ],
+  "references": (dict) {
+    "entries": (array[dict]) [
+      { "name": (string), "title": (string), "company": (string), "relationship": (string), "email": (string), "phone": (string) ,
+      "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []}
+    ]
+  },
+  "miscellaneous": (list) (may contain anything, strings, numbers, dict, list etc. as needed) []
+}

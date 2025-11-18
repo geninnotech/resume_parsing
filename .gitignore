@@ -1,0 +1,8 @@
+.env
+cvs
+data
+uploads
+output
+.vscode
+__pycache__
+out_001.png

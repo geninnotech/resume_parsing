@@ -1,0 +1,134 @@
+##job description
+```
+
+title : Business Development Manager
+
+name of the company : Valyee
+
+Job description :
+```
+Enigma Gaming is seeking a highly motivated and experienced Business Development Manager to join our team. The ideal candidate will have a passion for esports and a proven track record in developing business strategies and partnerships.
+
+
+Responsibilities:
+
+
+Develop and implement business strategies to drive growth for the organization
+Identify and pursue new business opportunities, including sponsorships, partnerships, and collaborations
+Build and maintain relationships with potential and existing partners
+Negotiate and close deals with partners and sponsors
+Conduct market research and analysis to stay up-to-date with industry trends and identify new opportunities
+Work closely with the marketing team to ensure consistent branding and messaging across all partnerships and collaborations
+Collaborate with other departments to ensure successful execution of partnership and sponsorship agreements
+Attend industry events and conferences to network and identify new business opportunities
+
+We offer a competitive salary package, including benefits and opportunities for growth within the organization. If you are a motivated and experienced Business Development Manager with a passion for esports, we encourage you to apply.
+
+```
+
+budget : 400000
+
+experience : 2
+
+skills : 
+
+Business strategy development
+Partnership management
+Sponsorship acquisition
+Relationship building
+Deal negotiation
+Market research and analysis
+Branding and messaging alignment
+Collaboration across departments
+Networking
+Esports industry knowledge
+Strong communication skills
+Independent and team working skills
+
+
+Mandatory qualification :
+
+Bachelor's degree in Business Administration, Marketing, or a related field
+2+ years of experience in business development or partnership management, preferably in the esports or gaming industry
+Proven track record of developing successful business strategies and partnerships
+Strong negotiation and communication skills
+Ability to work independently and as part of a team
+Passion for esports and knowledge of the industry
+
+
+location :
+Mumbai
+
+hiring manager :
+James Adams
+
+```
+
+
+##assessment_vectors
+```
+[
+    "degree_field_match",
+    "degree_level",
+    "degree_specialization_match",
+    "academic_performance",
+    "education_instutute",
+    "relevant_skills",
+    "proficiency_level",
+    "years_of_use_for_skill",
+    "relevant_certifications",
+    "certification_authority",
+    "recency",
+    "domain_match_job_titles",
+    "tenure_duration",
+    "business_impact_on_team",
+    "project_complexity",
+    "seniority",
+    "tenure_stability"
+    
+]
+```
+
+##custom weights
+```
+1. **esports_domain_experience_depth** — Quantifies years and number of roles in esports/gaming-specific business development or partnerships, with emphasis on recent, directly relevant experience.
+2. **sponsorship_revenue_generated** — Total sponsorship/partnership revenue attributed to the candidate, as stated on the resume (absolute values or bands).
+3. **largest_single_deal_value** — Highest individual deal value closed (from resume bullets or case highlights).
+4. **partnerships_closed_count** — Count of sponsorships/partnerships closed (explicit numbers or conservative inference if ranges are given).
+5. **named_brand_partner_count** — Number of recognizable brands explicitly named as partners/sponsors worked with or closed.
+6. **full_cycle_bd_ownership** — Evidence of owning the entire BD funnel (prospecting, outreach, pitch, negotiation, closing, handover/activation), as indicated by phrasing like “end-to-end,” “full-cycle,” or similar.
+7. **negotiation_complexity_level** — Depth/complexity of negotiations handled (multi-year, multi-party, exclusivity, cross-border, IP/licensing terms), as evidenced by deal descriptors.
+8. **market_research_deliverables** — Presence and specificity of market research outputs (e.g., TAM/SAM/SOM, competitive analysis, market sizing, GTM plans) documented on the resume.
+9. **branding_alignment_experience** — Concrete instances of collaborating with marketing on messaging, co-branded campaigns, brand guidelines, or asset creation to ensure brand consistency.
+10. **cross_functional_collaboration_breadth** — Number and diversity of internal functions worked with (e.g., marketing, legal, finance, product, ops, events) to execute partnerships.
+11. **crm_tool_proficiency** — Named CRM/tools used and duration (e.g., Salesforce, HubSpot, Pipedrive), including any pipeline management or automation noted.
+12. **esports_event_participation** — Participation in industry events/conferences (attendance, speaking, panels, booths), with emphasis on esports-relevant events and any lead-gen outcomes.
+13. **geographic_market_fit_india_mumbai** — Evidence of current/previous work location in Mumbai/India, client portfolio in India, and/or language proficiency relevant to the market as listed on the resume.
+14. **role_title_alignment** — Closeness of past titles to “Business Development Manager” in esports/partnerships (e.g., Partnerships Manager, Sponsorships Manager, BD Manager).
+15. **quota_achievement_rate** — Documented attainment vs. targets (e.g., % to quota, overachievement, awards like President’s Club).
+16. **contract_and_legal_negotiation_experience** — Direct involvement with MSAs, SOWs, term sheets, contract redlines, and collaboration with legal teams.
+17. **esports_sponsorship_inventory_knowledge** — Resume mentions of esports-specific assets (naming rights, jersey/logo placement, digital overlays, broadcast integrations, content series, influencer tie-ins).
+18. **esports_passion_signals** — Resume evidence of personal passion (tournament organizing, teams/clubs, streaming, content creation, volunteer roles, competitive play).
+19. **prospecting_channel_diversity** — Variety of lead sources utilized (outbound, inbound, events, referrals, partnerships, LinkedIn/Sales Navigator), as explicitly stated.
+20. **reporting_and_forecasting_rigor** — Evidence of pipeline reporting, forecast ownership, dashboard creation, or regular KPI reviews with leadership.
+
+```
+
+##user query
+```
+
+```
+
+
+given the job desciption, default vectors, custom vectors and the user query, you need to come up with weights for each of the default vectors and custom vectors.
+
+if you did not mention a vector(s) that will be assumed to have 0 weight.
+
+so each vector has a preassined score for every resume, but you dont need to know it. you just need to create the weights based on the user query.
+
+the idea here is that you will assign weights for the vectors, and we will filter the right candidates, which we will provide to the synthesiser agent, which will give the user with right analysis of the candidates.
+
+only respond with json format, where you have :
+{
+    "key_name": weight (int) (between 0-100)
+}
